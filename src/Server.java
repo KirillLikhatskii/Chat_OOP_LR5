@@ -33,6 +33,19 @@ public class Server {
                     {
                         s.add(server.accept());
                         invited = true;
+                    }else if (msg.contains("/exit"))
+                    {
+                        for (int j=0;j<nicknames.size(); j++)
+                        {
+                            if (msg.contains(nicknames.get(j)))
+                            {
+                                msg_for_all += "Чат покинул: " + nicknames.get(j) + "\r\n";
+                                nicknames.remove(i);
+                                s.get(i).close();
+                                s.remove(i);
+                                break;
+                            }
+                        }
                     }else
                     {
                         if(!msg.isEmpty())
